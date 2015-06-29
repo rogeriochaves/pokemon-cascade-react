@@ -1,0 +1,8 @@
+{
+  "generator-reactor": {
+    "app-name": "myNewProject",
+    "architecture": "reflux",
+    "styles-language": "scss",
+    "stylesLanguage": "scss"
+  }
+}
