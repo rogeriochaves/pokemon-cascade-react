@@ -2,10 +2,7 @@
 
 var React    = require('react'),
     Router   = require('react-router-component'),
-    Card = require('./card/Card'),
-    Cascade = require('./cascade/Cascade'),
-    CardItem = require('./card/CardItem')
-;
+    Cascade = require('./cascade/Cascade');
 
 var Locations = Router.Locations,
     Location = Router.Location,
@@ -28,7 +25,6 @@ var Content = React.createClass({
     return (
       <Locations hash>
         <Location path="/" handler={Cascade} />
-        <Location path="/cards/:cardId/:cardName" handler={CardItem} />
         <NotFound handler={NotFoundPage} />
       </Locations>
     );

@@ -3,19 +3,9 @@
 var React = require('react');
 var Column = require('./Column');
 
-var Pokemons = [
-  {id: 'abc1', name: 'Charmander', type: 'fire'},
-  {id: 'abc2', name: 'Squirtle', type: 'water'},
-  {id: 'abc3', name: 'Bulbasaur', type: 'plant'}
-];
-
-var Attacks = [
-  {id: 'abc1', name: 'Flamethrower', desc: 'Powerfull attack', forType: 'fire'},
-  {id: 'abc2', name: 'Bubbles', desc: 'Meh', forType: 'water'},
-  {id: 'abc3', name: 'Hydro Pump', desc: 'Awesome water cannon', forType: 'water'},
-  {id: 'abc4', name: 'Tail whip', desc: 'Useless attack', forType: 'all'},
-  {id: 'abc5', name: 'Leaf attack', desc: 'Cool green ninja stars', forType: 'plant'}
-];
+var Pokemons = require('./data/Pokemons');
+var Attacks = require('./data/Attacks');
+var Eeveelutions = require('./data/Eeveelutions');
 
 var Cascade = React.createClass({
 
@@ -28,16 +18,32 @@ var Cascade = React.createClass({
   render: function() {
     var pokemon = this.getPokemon(this.state.selected[0]);
     var attacks = this.getPokemonAttacks(pokemon);
-    var attack = this.getAttack(this.state.selected[1]);
-    var description = attack ? attack.desc : null;
 
-    return (
-      <div>
-        <Column items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
-        <Column items={attacks} name="Available Attacks" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
-        <Column items={description} name="Attacks Decription" index={2} />
-      </div>
-    );
+    if (pokemon && pokemon.name === 'Eevee') {
+      var attack = this.getAttack(this.state.selected[2]);
+      var description = attack ? attack.desc : null;
+
+      return (
+        <div>
+          <Column items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
+          <Column items={Eeveelutions} name="Eeveelutions" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
+          <Column items={attacks} name="Available Attacks" index={2} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
+          <Column items={description} name="Attacks Decription" index={3} />
+        </div>
+      );
+    } else {
+      var attack = this.getAttack(this.state.selected[1]);
+      var description = attack ? attack.desc : null;
+
+      return (
+        <div>
+          <Column items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
+          <Column items={attacks} name="Available Attacks" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
+          <Column items={description} name="Attacks Decription" index={2} />
+        </div>
+      );
+    }
+
   },
 
   updateSelection: function (index) {
