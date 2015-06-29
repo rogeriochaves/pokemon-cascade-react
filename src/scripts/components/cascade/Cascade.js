@@ -28,11 +28,14 @@ var Cascade = React.createClass({
   render: function() {
     var pokemon = this.getPokemon(this.state.selected[0]);
     var attacks = this.getPokemonAttacks(pokemon);
+    var attack = this.getAttack(this.state.selected[1]);
+    var description = attack ? attack.desc : null;
+
     return (
       <div>
         <Column items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
         <Column items={attacks} name="Available Attacks" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
-        <Column items={"duh"} name="Attacks Decription" index={2} />
+        <Column items={description} name="Attacks Decription" index={2} />
       </div>
     );
   },
@@ -59,6 +62,12 @@ var Cascade = React.createClass({
     return Attacks.filter(function (attack) {
       return attack.forType === 'all' || attack.forType === pokemon.type;
     });
+  },
+
+  getAttack: function (id) {
+    return Attacks.filter(function (attack) {
+      return attack.id === id;
+    })[0];
   }
 
 });

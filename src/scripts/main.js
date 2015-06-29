@@ -261,11 +261,14 @@
 	  render: function() {
 	    var pokemon = this.getPokemon(this.state.selected[0]);
 	    var attacks = this.getPokemonAttacks(pokemon);
+	    var attack = this.getAttack(this.state.selected[1]);
+	    var description = attack ? attack.desc : null;
+
 	    return (
 	      React.createElement("div", null, 
 	        React.createElement(Column, {items: Pokemons, name: "Initial Pokemon", index: 0, selected: this.state.selected, updateSelection: this.updateSelection.bind(this)}), 
 	        React.createElement(Column, {items: attacks, name: "Available Attacks", index: 1, selected: this.state.selected, updateSelection: this.updateSelection.bind(this)}), 
-	        React.createElement(Column, {items: "duh", name: "Attacks Decription", index: 2})
+	        React.createElement(Column, {items: description, name: "Attacks Decription", index: 2})
 	      )
 	    );
 	  },
@@ -292,6 +295,12 @@
 	    return Attacks.filter(function (attack) {
 	      return attack.forType === 'all' || attack.forType === pokemon.type;
 	    });
+	  },
+
+	  getAttack: function (id) {
+	    return Attacks.filter(function (attack) {
+	      return attack.id === id;
+	    })[0];
 	  }
 
 	});
