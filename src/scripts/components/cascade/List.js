@@ -13,7 +13,9 @@ var List = React.createClass({
     }.bind(this));
 
     return (
-      <div>
+      <div className="column">
+        <b>{this.props.name}</b>
+        <hr />
         <ul>
           {itemsElements}
         </ul>
