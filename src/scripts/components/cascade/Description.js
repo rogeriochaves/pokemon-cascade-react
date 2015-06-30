@@ -6,7 +6,9 @@ var Description = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="column">
+        <b>{this.props.name}</b>
+        <hr />
         <p>
           {this.props.info}
         </p>

@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react');
-var Column = require('./Column');
+var List = require('./List');
+var Description = require('./Description');
 
 var Pokemons = require('./data/Pokemons');
 var Attacks = require('./data/Attacks');
@@ -25,10 +26,10 @@ var Cascade = React.createClass({
 
       return (
         <div>
-          <Column items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
-          <Column items={Eeveelutions} name="Eeveelutions" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
-          <Column items={attacks} name="Available Attacks" index={2} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
-          <Column items={description} name="Attacks Decription" index={3} />
+          <List items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
+          <List items={Eeveelutions} name="Eeveelutions" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
+          <List items={attacks} name="Available Attacks" index={2} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
+          <Description info={description} name="Attacks Decription" />
         </div>
       );
     } else {
@@ -37,9 +38,9 @@ var Cascade = React.createClass({
 
       return (
         <div>
-          <Column items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
-          <Column items={attacks} name="Available Attacks" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
-          <Column items={description} name="Attacks Decription" index={2} />
+          <List items={Pokemons} name="Initial Pokemon" index={0} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)} />
+          <List items={attacks} name="Available Attacks" index={1} selected={this.state.selected} updateSelection={this.updateSelection.bind(this)}/>
+          <Description info={description} name="Attacks Decription" />
         </div>
       );
     }
